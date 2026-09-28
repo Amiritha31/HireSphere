@@ -29,7 +29,7 @@ public class Job {
 
     private String skills;
 
-    // Default constructor
+    // Default Constructor
     public Job() {
     }
 

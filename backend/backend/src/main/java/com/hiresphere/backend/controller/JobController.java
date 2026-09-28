@@ -4,15 +4,18 @@ import com.hiresphere.backend.entity.Job;
 import com.hiresphere.backend.service.JobService;
 
 import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/jobs")
 public class JobController {
 
+    // Job service
     private final JobService jobService;
 
     public JobController(JobService jobService) {
@@ -25,8 +28,7 @@ public class JobController {
             @Valid @RequestBody Job job) {
 
         return ResponseEntity.ok(
-                jobService.createJob(job)
-        );
+                jobService.createJob(job));
     }
 
     // GET ALL JOBS
@@ -34,8 +36,7 @@ public class JobController {
     public ResponseEntity<List<Job>> getAllJobs() {
 
         return ResponseEntity.ok(
-                jobService.getAllJobs()
-        );
+                jobService.getAllJobs());
     }
 
     // GET JOB BY ID
@@ -44,8 +45,7 @@ public class JobController {
             @PathVariable Long id) {
 
         return ResponseEntity.ok(
-                jobService.getJobById(id)
-        );
+                jobService.getJobById(id));
     }
 
     // UPDATE JOB
@@ -55,8 +55,7 @@ public class JobController {
             @Valid @RequestBody Job job) {
 
         return ResponseEntity.ok(
-                jobService.updateJob(id, job)
-        );
+                jobService.updateJob(id, job));
     }
 
     // DELETE JOB
@@ -67,7 +66,6 @@ public class JobController {
         jobService.deleteJob(id);
 
         return ResponseEntity.ok(
-                "Job deleted successfully"
-        );
+                "Job deleted successfully");
     }
 }

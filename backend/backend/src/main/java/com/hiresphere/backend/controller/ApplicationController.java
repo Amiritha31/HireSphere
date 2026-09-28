@@ -4,12 +4,14 @@ import com.hiresphere.backend.entity.Application;
 import com.hiresphere.backend.service.ApplicationService;
 
 import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/applications")
 public class ApplicationController {
 
@@ -25,8 +27,7 @@ public class ApplicationController {
             @Valid @RequestBody Application application) {
 
         return ResponseEntity.ok(
-                applicationService.createApplication(application)
-        );
+                applicationService.createApplication(application));
     }
 
     // GET ALL APPLICATIONS
@@ -34,8 +35,7 @@ public class ApplicationController {
     public ResponseEntity<List<Application>> getAllApplications() {
 
         return ResponseEntity.ok(
-                applicationService.getAllApplications()
-        );
+                applicationService.getAllApplications());
     }
 
     // GET APPLICATION BY ID
@@ -44,8 +44,7 @@ public class ApplicationController {
             @PathVariable Long id) {
 
         return ResponseEntity.ok(
-                applicationService.getApplicationById(id)
-        );
+                applicationService.getApplicationById(id));
     }
 
     // UPDATE APPLICATION
@@ -55,8 +54,7 @@ public class ApplicationController {
             @Valid @RequestBody Application application) {
 
         return ResponseEntity.ok(
-                applicationService.updateApplication(id, application)
-        );
+                applicationService.updateApplication(id, application));
     }
 
     // DELETE APPLICATION
@@ -67,7 +65,6 @@ public class ApplicationController {
         applicationService.deleteApplication(id);
 
         return ResponseEntity.ok(
-                "Application deleted successfully"
-        );
+                "Application deleted successfully");
     }
 }
